@@ -9,6 +9,12 @@ import { useState } from "react";
 export default function Home() {
   const [url, setUrl] = useState("")
 
+  // const [isDisabled, setIsDisabled] = useState<boolean>(false)
+  // const hadleClick=()=>{
+  //   setIsDisabled(true)
+  //   // console.log("click once")
+  // }
+
   return (
     <main className="min-h-screen flex items-center justify-center text-zinc-400">
       <div className="flex flex-col items-center justify-center gap-4 w-xl">
@@ -19,7 +25,20 @@ export default function Home() {
           value={url}
           onChange={(e)=> setUrl(e.target.value)}
         />
-        <button className="px-4 py-3 rounded-lg text-zinc-400 bg-zinc-900 w-full hover:bg-zinc-800 cursor-pointer hover:text-zinc-200">shawten</button>
+        <button 
+          className={`px-4 py-3 rounded-lg text-zinc-400 bg-zinc-900 w-full hover:bg-zinc-800 cursor-pointer hover:text-zinc-200`}
+          onClick={()=>{console.log(url)}}
+          disabled={!url}
+
+        
+        >shawten</button>
+
+
+        {/* <button 
+        className="cursor-pointer"
+          onClick={hadleClick}
+          disabled={isDisabled}
+        >{isDisabled ? "done" : "submit" }</button> */}
 
 
 
