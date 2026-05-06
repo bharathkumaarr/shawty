@@ -1,7 +1,12 @@
 "use client";
-
-
 import { useState } from "react";
+import { generateShortCode } from "@/lib/generateShortCode";
+
+type ShortenedUrl = {
+  originalUrl: string;
+  shortCode: string;
+}
+
 
 
 
@@ -9,11 +14,24 @@ import { useState } from "react";
 export default function Home() {
   const [url, setUrl] = useState("")
 
+  const [shortenedUrls, setShortenedUrls] = useState<ShortenedUrl[]>([])
+
   // const [isDisabled, setIsDisabled] = useState<boolean>(false)
   // const hadleClick=()=>{
   //   setIsDisabled(true)
   //   // console.log("click once")
   // }
+
+  function handleShortenUrl() {
+    const shortCode = generateShortCode()
+
+    const newShortenedUrl: ShortenedUrl = {
+      originalUrl: url,
+      shortCode
+    }
+    setShortenedUrls((prev)=>[...prev, newShortenedUrl])
+    console.log(newShortenedUrl)
+  }
 
   return (
     <main className="min-h-screen flex items-center justify-center text-zinc-400">
@@ -27,10 +45,9 @@ export default function Home() {
         />
         <button 
           className={`px-4 py-3 rounded-lg text-zinc-400 bg-zinc-900 w-full hover:bg-zinc-800 cursor-pointer hover:text-zinc-200`}
-          onClick={()=>{console.log(url)}}
+          onClick={()=>handleShortenUrl()}
           disabled={!url}
-
-        
+    
         >shawten</button>
 
 
